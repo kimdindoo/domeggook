@@ -46,3 +46,7 @@ app.*.map.json
 
 # Exclude Secret data file
 .env
+
+# Generated files
+*.g.dart
+*.freezed.dart
