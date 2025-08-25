@@ -1,20 +1,20 @@
-import 'package:domeggook/config/router/route_names.dart';
-import 'package:domeggook/product/view/category_product_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:domeggook/common/layout/defalut_layout.dart';
+import 'package:domeggook/config/router/route_names.dart';
 import 'package:domeggook/product/model/category_model.dart';
 import 'package:domeggook/product/repository/product_repository.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-class CategoryScreen extends StatelessWidget {
+class CategoryScreen extends ConsumerWidget {
   const CategoryScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return DefaultLayout(
       title: '카테고리',
       child: FutureBuilder<CategoryModel>(
-        future: getCategory(), // API 호출
+        future: ref.watch(productRepositoryProvider).getCategory(), // API 호출
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -54,9 +54,7 @@ class TopLevelExpansionTile extends StatelessWidget {
           style: const TextStyle(fontWeight: FontWeight.bold),
         ),
         onTap: () {
-          debugPrint(
-            "선택된 카테고리: ${category.name}, intValue: ${category.intValue}",
-          );
+          debugPrint("선택된 카테고리: ${category.name}, code: ${category.code}");
         },
       );
     }
@@ -86,9 +84,7 @@ class TopLevelExpansionTile extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                debugPrint(
-                  "선택된 카테고리: ${node.name}, intValue: ${node.intValue}",
-                );
+                debugPrint("선택된 카테고리: ${node.name}, code: ${node.code}");
 
                 GoRouter.of(context).pushNamed(
                   RouteNames.categoryProduct,
