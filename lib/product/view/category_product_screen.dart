@@ -8,11 +8,11 @@ class CategoryProductScreen extends StatelessWidget {
   const CategoryProductScreen({
     super.key,
     required this.categoryName,
-    required this.categoryNumber,
+    required this.categoryCode,
   });
 
   final String categoryName;
-  final String categoryNumber;
+  final String categoryCode;
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class CategoryProductScreen extends StatelessWidget {
       title: categoryName,
       child: SingleChildScrollView(
         child: FutureBuilder<ProductModel>(
-          future: getProductByCategory(categoryNumber),
+          future: getProductByCategory(categoryCode),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Center(child: CircularProgressIndicator());
