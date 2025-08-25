@@ -25,16 +25,12 @@ class ScaffoldWithNavBar extends StatelessWidget {
           BottomNavigationBarItem(icon: Icon(Icons.search), label: '검색'),
         ],
         currentIndex: navigationShell.currentIndex,
-        onTap: (int index) => navigationShell.goBranch(index),
-      ),
-    );
-  }
 
-  // ignore: unused_element
-  void _onTap(BuildContext context, int index) {
-    navigationShell.goBranch(
-      index,
-      initialLocation: index == navigationShell.currentIndex,
+        onTap: (int index) => navigationShell.goBranch(
+          index,
+          initialLocation: true,
+        ), // initialLocation: false - 현재 위치 유지, true - 처음 위치로 이동
+      ),
     );
   }
 }
