@@ -1,4 +1,4 @@
-import 'package:domeggook/common/view/root_tab.dart';
+import 'package:domeggook/config/router/router_provider.dart';
 import 'package:domeggook/observer/logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
@@ -11,18 +11,20 @@ Future main() async {
   ); // providers를 읽을 수 있게, 로깅 하기 위해 logger 추가
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends ConsumerWidget {
   const MyApp({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
+  Widget build(BuildContext context, WidgetRef ref) {
+    final router = ref.watch(routeProvider);
+
+    return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       title: 'domeggook',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const RootTab(),
+      routerConfig: router,
     );
   }
 }
