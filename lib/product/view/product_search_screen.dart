@@ -1,8 +1,7 @@
 import 'package:domeggook/common/layout/defalut_layout.dart';
-import 'package:domeggook/common/utils/number_utils.dart';
-import 'package:domeggook/product/model/product_model.dart';
-import 'package:domeggook/product/repository/product_repository.dart';
+import 'package:domeggook/config/router/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductSearchScreen extends StatefulWidget {
   const ProductSearchScreen({super.key});
@@ -13,14 +12,6 @@ class ProductSearchScreen extends StatefulWidget {
 
 class _ProductSearchScreenState extends State<ProductSearchScreen> {
   final TextEditingController _controller = TextEditingController();
-  Future<ProductModel>? _futureProducts;
-
-  void _search(String query) {
-    if (query.isEmpty) return;
-    setState(() {
-      _futureProducts = getProductByKeyword(query);
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -50,54 +41,20 @@ class _ProductSearchScreenState extends State<ProductSearchScreen> {
                         hintText: '검색어를 입력하세요',
                         isDense: true,
                       ),
-                      onSubmitted: _search,
+                      onSubmitted: (String value) {
+                        if (value.isEmpty) return;
+
+                        GoRouter.of(context).pushNamed(
+                          RouteNames.keywordProduct,
+                          queryParameters: {'keyword': value},
+                        );
+                      },
                     ),
                   ),
-                  GestureDetector(
-                    onTap: () => _search(_controller.text),
-                    child: const Icon(Icons.search, color: Colors.grey),
-                  ),
+                  const Icon(Icons.search, color: Colors.grey),
                 ],
               ),
             ),
-          ),
-          Expanded(
-            child: _futureProducts == null
-                ? const Center(child: Text('검색어를 입력하세요'))
-                : FutureBuilder<ProductModel>(
-                    future: _futureProducts,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
-                      } else if (snapshot.hasError) {
-                        return Center(child: Text('Error: ${snapshot.error}'));
-                      } else if (!snapshot.hasData ||
-                          snapshot.data!.domeggook.list.item.isEmpty) {
-                        return const Center(child: Text('No products found'));
-                      }
-
-                      final products = snapshot.data!.domeggook.list.item;
-
-                      return ListView.builder(
-                        itemCount: products.length,
-                        itemBuilder: (context, index) {
-                          final product = products[index];
-                          return ListTile(
-                            leading: Image.network(
-                              product.thumb,
-                              width: 100,
-                              height: 50,
-                              fit: BoxFit.cover,
-                            ),
-                            title: Text(product.title),
-                            subtitle: Text(
-                              '${NumberUtils.formatPrice(int.parse(product.price))}원',
-                            ),
-                          );
-                        },
-                      );
-                    },
-                  ),
           ),
         ],
       ),

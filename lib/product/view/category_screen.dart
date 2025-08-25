@@ -1,8 +1,10 @@
+import 'package:domeggook/config/router/route_names.dart';
 import 'package:domeggook/product/view/category_product_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:domeggook/common/layout/defalut_layout.dart';
 import 'package:domeggook/product/model/category_model.dart';
 import 'package:domeggook/product/repository/product_repository.dart';
+import 'package:go_router/go_router.dart';
 
 class CategoryScreen extends StatelessWidget {
   const CategoryScreen({super.key});
@@ -87,15 +89,10 @@ class TopLevelExpansionTile extends StatelessWidget {
                 debugPrint(
                   "선택된 카테고리: ${node.name}, intValue: ${node.intValue}",
                 );
-                // 페이지 이동
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => CategoryProductScreen(
-                      categoryName: node.name,
-                      categoryNumber: node.code,
-                    ),
-                  ),
+
+                GoRouter.of(context).pushNamed(
+                  RouteNames.categoryProduct,
+                  queryParameters: {'name': node.name, 'code': node.code},
                 );
               },
             ),

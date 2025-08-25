@@ -1,6 +1,6 @@
-// 홈 화면
-import 'package:domeggook/common/view/root_tab.dart';
+import 'package:domeggook/config/router/route_names.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class ProductScreen extends StatelessWidget {
   const ProductScreen({super.key});
@@ -28,13 +28,15 @@ class ProductScreen extends StatelessWidget {
                 ),
                 title: GestureDetector(
                   onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) =>
-                            const RootTab(initialIndex: 2), // 2번 탭 = 검색
-                      ),
-                    );
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (_) =>
+                    //         const RootTab(initialIndex: 2), // 2번 탭 = 검색
+                    //   ),
+                    // );
+
+                    GoRouter.of(context).goNamed(RouteNames.productSearch);
                   },
                   child: Container(
                     width: double.infinity,
