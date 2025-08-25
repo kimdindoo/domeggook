@@ -3,6 +3,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'product_model.freezed.dart';
 part 'product_model.g.dart';
 
+int _stringOrIntToInt(dynamic value) =>
+    value is String ? int.parse(value) : value as int;
+
 @freezed
 abstract class ProductModel with _$ProductModel {
   const factory ProductModel({required Domeggook domeggook}) = _ProductModel;
@@ -26,7 +29,8 @@ abstract class Header with _$Header {
     required int numberOfItems,
     required int firstItem,
     required int lastItem,
-    required int currentPage,
+    // required int currentPage,
+    @JsonKey(fromJson: _stringOrIntToInt) required int currentPage,
     required int itemsPerPage,
     required int numberOfPages,
     required String sort,
