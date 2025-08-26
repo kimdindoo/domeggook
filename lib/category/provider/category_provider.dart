@@ -3,7 +3,7 @@ import '../repository/category_repository.dart';
 import '../model/category_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part '../../product/provider/category_provider.g.dart';
+part 'category_provider.g.dart';
 
 @Riverpod(keepAlive: true)
 Future<CategoryModel> category(Ref ref) async {
