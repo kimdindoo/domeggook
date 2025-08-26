@@ -1,9 +1,11 @@
 import 'package:domeggook/common/utils/number_utils.dart';
 import 'package:domeggook/common/utils/pagination_helper.dart';
+import 'package:domeggook/config/router/route_names.dart';
 import 'package:domeggook/product/model/product_model.dart';
 import 'package:domeggook/product/repository/product_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 class CategoryProductScreen extends ConsumerStatefulWidget {
@@ -79,7 +81,17 @@ class _CategoryProductScreenState extends ConsumerState<CategoryProductScreen> {
                   // 각 아이템 빌드
                   itemBuilder: (context, product, index) {
                     return GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        print("선택된 상품: ${product.title}, id: ${product.no}");
+                        GoRouter.of(context).pushNamed(
+                          RouteNames.productDetail,
+                          pathParameters: {'productNo': product.no},
+                          queryParameters: {
+                            'name': widget.categoryName,
+                            'code': widget.categoryCode,
+                          },
+                        );
+                      },
                       child: Row(
                         children: [
                           const SizedBox(width: 20),
