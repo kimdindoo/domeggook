@@ -2,8 +2,8 @@ import 'package:domeggook/config/router/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class ProductScreen extends StatelessWidget {
-  const ProductScreen({super.key});
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

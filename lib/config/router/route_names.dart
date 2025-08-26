@@ -1,5 +1,5 @@
 class RouteNames {
-  static const String product = 'product';
+  static const String home = '/';
   static const String category = 'category';
   static const String categoryProduct = 'categoryProduct';
   static const String productSearch = 'productSearch';

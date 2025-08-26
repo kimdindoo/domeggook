@@ -6,7 +6,7 @@ import 'package:domeggook/product/view/category_product_screen.dart';
 import 'package:domeggook/category/view/category_screen.dart';
 import 'package:domeggook/product/view/keyword_product_screen.dart';
 import 'package:domeggook/product/view/product_detail_screen.dart';
-import 'package:domeggook/product/view/product_screen.dart';
+import 'package:domeggook/home/view/home_screen.dart';
 import 'package:domeggook/product/view/product_search_screen.dart';
 import 'package:domeggook/webview/product_1688_screen.dart';
 import 'package:flutter/widgets.dart';
@@ -39,10 +39,10 @@ GoRouter route(Ref ref) {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: '/product',
-                name: RouteNames.product,
+                path: '/',
+                name: RouteNames.home,
                 builder: (context, state) {
-                  return ProductScreen();
+                  return HomeScreen();
                 },
               ),
             ],

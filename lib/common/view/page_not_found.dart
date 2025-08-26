@@ -24,7 +24,7 @@ class PageNotFound extends StatelessWidget {
               const SizedBox(height: 10),
               OutlinedButton(
                 onPressed: () {
-                  GoRouter.of(context).goNamed(RouteNames.product);
+                  GoRouter.of(context).goNamed(RouteNames.home);
                 },
                 child: const Text('Go to Home'),
               ),
