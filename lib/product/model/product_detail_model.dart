@@ -4,30 +4,31 @@ part 'product_detail_model.freezed.dart';
 part 'product_detail_model.g.dart';
 
 @freezed
-class ProductDetailResponse with _$ProductDetailResponse {
-  const factory ProductDetailResponse({required Domeggook domeggook}) =
+class ProductDetailModel with _$ProductDetailModel {
+  factory ProductDetailModel({required Domeggook domeggook}) =
       _ProductDetailResponse;
 
-  factory ProductDetailResponse.fromJson(Map<String, dynamic> json) =>
-      _$ProductDetailResponseFromJson(json);
+  factory ProductDetailModel.fromJson(Map<String, dynamic> json) =>
+      _$ProductDetailModelFromJson(json);
 }
 
 @freezed
 class Domeggook with _$Domeggook {
-  const factory Domeggook({
+  factory Domeggook({
     required Basis basis,
     required Price price,
     required Qty qty,
     required Deli deli,
     required Channel channel,
     required Thumb thumb,
-    required Desc desc,
-    required String selectOpt,
+    required DescClass desc,
+    String? selectOpt,
     required Seller seller,
     required Benefits benefits,
     required Detail detail,
     required Category category,
-    @JsonKey(name: 'return') required ReturnInfo returnInfo,
+    @JsonKey(name: 'return') required ReturnClass domeggookReturn,
+    Popular? popular,
     required Event event,
     required Etc etc,
   }) = _Domeggook;
@@ -36,21 +37,22 @@ class Domeggook with _$Domeggook {
       _$DomeggookFromJson(json);
 }
 
+// ===================== Basis / Keywords =====================
 @freezed
 class Basis with _$Basis {
-  const factory Basis({
-    required int no,
-    required String status,
-    required String title,
+  factory Basis({
+    int? no,
+    String? status,
+    String? title,
     required Keywords keywords,
-    required String section,
-    required String nego,
-    required String adult,
-    required String dateStart,
-    required String dateEnd,
-    required String dateReg,
-    required String secretItem,
-    required String tax,
+    String? section,
+    String? nego,
+    String? adult,
+    DateTime? dateStart,
+    DateTime? dateEnd,
+    DateTime? dateReg,
+    String? secretItem,
+    String? tax,
   }) = _Basis;
 
   factory Basis.fromJson(Map<String, dynamic> json) => _$BasisFromJson(json);
@@ -58,130 +60,118 @@ class Basis with _$Basis {
 
 @freezed
 class Keywords with _$Keywords {
-  const factory Keywords({required List<String> kw}) = _Keywords;
-
+  factory Keywords({required List<String> kw}) = _Keywords;
   factory Keywords.fromJson(Map<String, dynamic> json) =>
       _$KeywordsFromJson(json);
 }
 
+// ===================== Benefits / SellerPoint =====================
 @freezed
-class Price with _$Price {
-  const factory Price({required String dome, required String supply}) = _Price;
-
-  factory Price.fromJson(Map<String, dynamic> json) => _$PriceFromJson(json);
+class Benefits with _$Benefits {
+  factory Benefits({required SellerPoint sellerPoint}) = _Benefits;
+  factory Benefits.fromJson(Map<String, dynamic> json) =>
+      _$BenefitsFromJson(json);
 }
 
 @freezed
-class Qty with _$Qty {
-  const factory Qty({
-    required String inventory,
-    required String domeMoq,
-    required int domeUnit,
-    required int supplyUnit,
-  }) = _Qty;
+class SellerPoint with _$SellerPoint {
+  factory SellerPoint({String? type}) = _SellerPoint;
+  factory SellerPoint.fromJson(Map<String, dynamic> json) =>
+      _$SellerPointFromJson(json);
+}
 
-  factory Qty.fromJson(Map<String, dynamic> json) => _$QtyFromJson(json);
+// ===================== Category =====================
+@freezed
+class Category with _$Category {
+  factory Category({required Parents parents, required Current current}) =
+      _Category;
+  factory Category.fromJson(Map<String, dynamic> json) =>
+      _$CategoryFromJson(json);
+}
+
+@freezed
+class Current with _$Current {
+  factory Current({String? name, String? code, int? depth}) = _Current;
+  factory Current.fromJson(Map<String, dynamic> json) =>
+      _$CurrentFromJson(json);
+}
+
+@freezed
+class Parents with _$Parents {
+  factory Parents({required List<Current> elem}) = _Parents;
+  factory Parents.fromJson(Map<String, dynamic> json) =>
+      _$ParentsFromJson(json);
+}
+
+// ===================== Channel / Deli / Dome / Merge / FeeExtra =====================
+@freezed
+class Channel with _$Channel {
+  factory Channel({String? dome, String? supply}) = _Channel;
+  factory Channel.fromJson(Map<String, dynamic> json) =>
+      _$ChannelFromJson(json);
 }
 
 @freezed
 class Deli with _$Deli {
-  const factory Deli({
-    required String method,
-    required String pay,
-    required DeliOption dome,
-    required DeliOption supply,
-    required String wating,
-    required String periodDeli,
-    required String sendAvg,
-    required String fastDeli,
+  factory Deli({
+    String? method,
+    String? pay,
+    required Dome dome,
+    required Dome supply,
+    String? wating,
+    String? periodDeli,
+    String? sendAvg,
+    String? fastDeli,
     required Merge merge,
+    @JsonKey(fromJson: _toString) String? shippingArea, // ! 확인
     required FeeExtra feeExtra,
-    required String fromOversea,
-    required String reqCcno,
+    String? fromOversea,
+    String? reqCcno,
   }) = _Deli;
 
   factory Deli.fromJson(Map<String, dynamic> json) => _$DeliFromJson(json);
 }
 
 @freezed
-class DeliOption with _$DeliOption {
-  const factory DeliOption({
-    String? pay,
-    required String type,
-    required String tbl,
-  }) = _DeliOption;
-
-  factory DeliOption.fromJson(Map<String, dynamic> json) =>
-      _$DeliOptionFromJson(json);
+class Dome with _$Dome {
+  factory Dome({String? type, String? tbl}) = _Dome;
+  factory Dome.fromJson(Map<String, dynamic> json) => _$DomeFromJson(json);
 }
 
 @freezed
 class Merge with _$Merge {
-  const factory Merge({required String enable}) = _Merge;
-
+  factory Merge({String? enable}) = _Merge;
   factory Merge.fromJson(Map<String, dynamic> json) => _$MergeFromJson(json);
 }
 
 @freezed
 class FeeExtra with _$FeeExtra {
-  const factory FeeExtra({
-    required String jeju,
-    required String islands,
-    required String useDeliPro,
-  }) = _FeeExtra;
-
+  factory FeeExtra({String? jeju, String? islands, String? useDeliPro}) =
+      _FeeExtra;
   factory FeeExtra.fromJson(Map<String, dynamic> json) =>
       _$FeeExtraFromJson(json);
 }
 
+// ===================== DescClass / Contents / License =====================
 @freezed
-class Channel with _$Channel {
-  const factory Channel({required String dome, required String supply}) =
-      _Channel;
+class DescClass with _$DescClass {
+  factory DescClass({
+    required License license,
+    String? notice,
+    required Contents contents,
+  }) = _DescClass;
 
-  factory Channel.fromJson(Map<String, dynamic> json) =>
-      _$ChannelFromJson(json);
-}
-
-@freezed
-class Thumb with _$Thumb {
-  const factory Thumb({
-    required String small,
-    required String large,
-    required String original,
-    required String smallPng,
-    required String largePng,
-    String? hash,
-    required String lastUpdate,
-  }) = _Thumb;
-
-  factory Thumb.fromJson(Map<String, dynamic> json) => _$ThumbFromJson(json);
-}
-
-@freezed
-class Desc with _$Desc {
-  const factory Desc({required License license, required Contents contents}) =
-      _Desc;
-
-  factory Desc.fromJson(Map<String, dynamic> json) => _$DescFromJson(json);
-}
-
-@freezed
-class License with _$License {
-  const factory License({required String usable, required String msg}) =
-      _License;
-
-  factory License.fromJson(Map<String, dynamic> json) =>
-      _$LicenseFromJson(json);
+  factory DescClass.fromJson(Map<String, dynamic> json) =>
+      _$DescClassFromJson(json);
 }
 
 @freezed
 class Contents with _$Contents {
-  const factory Contents({
-    required String item,
-    required String deli,
-    required String event,
-    required String otherItem,
+  factory Contents({
+    String? item,
+    String? deli,
+    String? event,
+    String? otherItem,
   }) = _Contents;
 
   factory Contents.fromJson(Map<String, dynamic> json) =>
@@ -189,15 +179,56 @@ class Contents with _$Contents {
 }
 
 @freezed
+class License with _$License {
+  factory License({String? usable, String? msg}) = _License;
+  factory License.fromJson(Map<String, dynamic> json) =>
+      _$LicenseFromJson(json);
+}
+
+// ===================== Price / Qty / Thumb =====================
+@freezed
+class Price with _$Price {
+  factory Price({String? dome}) = _Price;
+  factory Price.fromJson(Map<String, dynamic> json) => _$PriceFromJson(json);
+}
+
+@freezed
+class Qty with _$Qty {
+  factory Qty({
+    @JsonKey(fromJson: _toString) String? inventory,
+    @JsonKey(fromJson: _toString) String? domeMoq,
+    @JsonKey(fromJson: _toString) String? domeUnit,
+  }) = _Qty;
+
+  factory Qty.fromJson(Map<String, dynamic> json) => _$QtyFromJson(json);
+}
+
+@freezed
+class Thumb with _$Thumb {
+  factory Thumb({
+    String? small,
+    String? large,
+    String? original,
+    String? smallPng,
+    String? largePng,
+    String? hash,
+    DateTime? lastUpdate,
+  }) = _Thumb;
+
+  factory Thumb.fromJson(Map<String, dynamic> json) => _$ThumbFromJson(json);
+}
+
+// ===================== Seller / Score / Company =====================
+@freezed
 class Seller with _$Seller {
-  const factory Seller({
-    required String id,
-    required String nick,
-    required String type,
-    required String rank,
-    required String power,
-    required String good,
-    required String global,
+  factory Seller({
+    String? id,
+    String? nick,
+    String? type,
+    String? rank,
+    String? power,
+    String? good,
+    String? global,
     required Score score,
     required Company company,
   }) = _Seller;
@@ -207,52 +238,37 @@ class Seller with _$Seller {
 
 @freezed
 class Score with _$Score {
-  const factory Score({required String avg, required int cnt}) = _Score;
-
+  factory Score({String? avg, int? cnt}) = _Score;
   factory Score.fromJson(Map<String, dynamic> json) => _$ScoreFromJson(json);
 }
 
 @freezed
 class Company with _$Company {
-  const factory Company({
-    required String name,
-    required String boss,
-    required String cno,
-    required String addr,
-    required String phone,
+  factory Company({
+    String? name,
+    String? boss,
+    String? cno,
+    String? addr,
+    String? phone,
   }) = _Company;
 
   factory Company.fromJson(Map<String, dynamic> json) =>
       _$CompanyFromJson(json);
 }
 
-@freezed
-class Benefits with _$Benefits {
-  const factory Benefits({required SellerPoint sellerPoint}) = _Benefits;
-
-  factory Benefits.fromJson(Map<String, dynamic> json) =>
-      _$BenefitsFromJson(json);
-}
-
-@freezed
-class SellerPoint with _$SellerPoint {
-  const factory SellerPoint({required String type}) = _SellerPoint;
-
-  factory SellerPoint.fromJson(Map<String, dynamic> json) =>
-      _$SellerPointFromJson(json);
-}
-
+// ===================== Detail / InfoDuty / Item =====================
 @freezed
 class Detail with _$Detail {
-  const factory Detail({
-    required String size,
-    required String weight,
-    required String country,
-    required String manufacturer,
-    required String model,
-    required String oversea,
-    required String itemCustomCode,
-    required InfoDuty infoDuty,
+  factory Detail({
+    String? size,
+    String? weight,
+    String? country,
+    String? manufacturer,
+    String? model,
+    @JsonKey(fromJson: _safetyCertFromJson) List<SafetyCert>? safetyCert,
+    String? oversea,
+    String? itemCustomCode,
+    InfoDuty? infoDuty,
   }) = _Detail;
 
   factory Detail.fromJson(Map<String, dynamic> json) => _$DetailFromJson(json);
@@ -260,106 +276,134 @@ class Detail with _$Detail {
 
 @freezed
 class InfoDuty with _$InfoDuty {
-  const factory InfoDuty({
-    required String type,
-    required List<InfoDutyItem> item,
-  }) = _InfoDuty;
-
+  factory InfoDuty({String? type, required List<InfoItem> item}) = _InfoDuty;
   factory InfoDuty.fromJson(Map<String, dynamic> json) =>
       _$InfoDutyFromJson(json);
 }
 
-@freezed
-class InfoDutyItem with _$InfoDutyItem {
-  const factory InfoDutyItem({
-    required String type,
-    required String name,
-    required String desc,
-  }) = _InfoDutyItem;
-
-  factory InfoDutyItem.fromJson(Map<String, dynamic> json) =>
-      _$InfoDutyItemFromJson(json);
+enum Type {
+  @JsonValue('item')
+  ITEM,
+  @JsonValue('transaction')
+  TRANSACTION,
 }
 
 @freezed
-class Category with _$Category {
-  const factory Category({
-    required Parents parents,
-    required CategoryElem current,
-  }) = _Category;
+class InfoItem with _$InfoItem {
+  factory InfoItem({
+    @JsonKey(unknownEnumValue: Type.ITEM) Type? type,
+    String? name,
+    String? desc,
+  }) = _InfoItem;
 
-  factory Category.fromJson(Map<String, dynamic> json) =>
-      _$CategoryFromJson(json);
+  factory InfoItem.fromJson(Map<String, dynamic> json) =>
+      _$InfoItemFromJson(json);
+}
+
+// ===================== SafetyCert =====================
+@freezed
+class SafetyCert with _$SafetyCert {
+  factory SafetyCert({
+    String? exem,
+    String? exemTitle,
+    String? exemContent1,
+    String? exemContent2,
+    String? cert,
+    String? useImgUrl,
+    String? imgUrl,
+    String? type,
+    String? name,
+    String? certType,
+    String? certName,
+    String? useNo,
+    String? no,
+    String? useWarning,
+    String? warning,
+  }) = _SafetyCert;
+
+  factory SafetyCert.fromJson(Map<String, dynamic> json) =>
+      _$SafetyCertFromJson(json);
+}
+
+// ===================== ReturnClass / Addr =====================
+@freezed
+class ReturnClass with _$ReturnClass {
+  factory ReturnClass({
+    required Addr addr,
+    int? deliAmt,
+    String? deliAmtDouble,
+  }) = _ReturnClass;
+
+  factory ReturnClass.fromJson(Map<String, dynamic> json) =>
+      _$ReturnClassFromJson(json);
 }
 
 @freezed
-class Parents with _$Parents {
-  const factory Parents({required List<CategoryElem> elem}) = _Parents;
+class Addr with _$Addr {
+  factory Addr({
+    String? no,
+    String? zipcode,
+    String? address1,
+    String? address2,
+    String? phone,
+    String? mobile,
+  }) = _Addr;
 
-  factory Parents.fromJson(Map<String, dynamic> json) =>
-      _$ParentsFromJson(json);
+  factory Addr.fromJson(Map<String, dynamic> json) => _$AddrFromJson(json);
 }
 
-@freezed
-class CategoryElem with _$CategoryElem {
-  const factory CategoryElem({
-    required String name,
-    required String code,
-    required int depth,
-  }) = _CategoryElem;
-
-  factory CategoryElem.fromJson(Map<String, dynamic> json) =>
-      _$CategoryElemFromJson(json);
-}
-
-@freezed
-class ReturnInfo with _$ReturnInfo {
-  const factory ReturnInfo({
-    required ReturnAddr addr,
-    required int deliAmt,
-    required String deliAmtDouble,
-  }) = _ReturnInfo;
-
-  factory ReturnInfo.fromJson(Map<String, dynamic> json) =>
-      _$ReturnInfoFromJson(json);
-}
-
-@freezed
-class ReturnAddr with _$ReturnAddr {
-  const factory ReturnAddr({
-    required String no,
-    required String zipcode,
-    required String address1,
-    required String address2,
-    required String phone,
-    required String mobile,
-  }) = _ReturnAddr;
-
-  factory ReturnAddr.fromJson(Map<String, dynamic> json) =>
-      _$ReturnAddrFromJson(json);
-}
-
+// ===================== Event / Popular / Etc =====================
 @freezed
 class Event with _$Event {
-  const factory Event({required Join join, required String packDeli}) = _Event;
+  factory Event({
+    @JsonKey(fromJson: _joinFromJson) Join? join,
+    String? packDeli,
+  }) = _Event;
 
   factory Event.fromJson(Map<String, dynamic> json) => _$EventFromJson(json);
 }
 
+// ! JSON 필드가 동적으로 타입이 바뀔 수 있음
 @freezed
 class Join with _$Join {
-  const factory Join({required List<String> no}) = _Join;
+  factory Join({List<String>? no}) = _Join;
 
   factory Join.fromJson(Map<String, dynamic> json) => _$JoinFromJson(json);
 }
 
+// JSON이 ""이면 null, Map이면 Join.fromJson 사용
+Join? _joinFromJson(dynamic json) {
+  if (json == null || json == "") return null;
+  return Join.fromJson(json as Map<String, dynamic>);
+}
+
+@freezed
+class Popular with _$Popular {
+  factory Popular({String? code, String? name}) = _Popular;
+  factory Popular.fromJson(Map<String, dynamic> json) =>
+      _$PopularFromJson(json);
+}
+
 @freezed
 class Etc with _$Etc {
-  const factory Etc({
-    required String showByMailzine,
-    required String connectStompApi,
-    required String denyMarket,
+  factory Etc({
+    String? showByMailzine,
+    String? connectStompApi,
+    String? denyMarket,
   }) = _Etc;
-
   factory Etc.fromJson(Map<String, dynamic> json) => _$EtcFromJson(json);
+}
+
+// int, double, String 모두 안전하게 String으로 변환
+String? _toString(dynamic value) {
+  if (value == null) return null;
+  return value.toString();
+}
+
+// null이 들어와도 빈 리스트로 처리
+List<SafetyCert>? _safetyCertFromJson(dynamic json) {
+  if (json == null) return null; // 또는 [] 로도 가능
+  return (json as List<dynamic>)
+      .map((e) => SafetyCert.fromJson(e as Map<String, dynamic>))
+      .toList();
 }
