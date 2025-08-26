@@ -29,7 +29,7 @@ abstract class Header with _$Header {
     required int numberOfItems,
     required int firstItem,
     required int lastItem,
-    // required int currentPage,
+    // currentPage이 String 또는 int로 올 수 있어서 변환 함수 사용
     @JsonKey(fromJson: _stringOrIntToInt) required int currentPage,
     required int itemsPerPage,
     required int numberOfPages,
