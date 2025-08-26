@@ -1,4 +1,3 @@
-import 'package:domeggook/common/layout/defalut_layout.dart';
 import 'package:domeggook/common/utils/number_utils.dart';
 import 'package:domeggook/common/utils/pagination_helper.dart';
 import 'package:domeggook/product/model/product_model.dart';
