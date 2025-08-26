@@ -36,7 +36,7 @@ class ProductScreen extends StatelessWidget {
                     //   ),
                     // );
 
-                    GoRouter.of(context).goNamed(RouteNames.productSearch);
+                    GoRouter.of(context).pushNamed(RouteNames.productSearch);
                   },
                   child: Container(
                     width: double.infinity,
