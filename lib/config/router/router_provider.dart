@@ -22,7 +22,7 @@ final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 GoRouter route(Ref ref) {
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/product',
+    initialLocation: '/',
     routes: [
       GoRoute(
         path: '/product1688',
