@@ -1,7 +1,7 @@
 import 'package:domeggook/common/layout/defalut_layout.dart';
 import 'package:domeggook/config/router/route_names.dart';
 import 'package:domeggook/product/model/category_model.dart';
-import 'package:domeggook/product/repository/product_repository.dart';
+import 'package:domeggook/product/provider/category_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -11,21 +11,13 @@ class CategoryScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final category = ref.watch(categoryProvider); // ← 여기 수정
+
     return DefaultLayout(
       title: '카테고리',
-      child: FutureBuilder<CategoryModel>(
-        future: ref.watch(productRepositoryProvider).getCategory(), // API 호출
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else if (!snapshot.hasData ||
-              snapshot.data!.domeggook.items.isEmpty) {
-            return const Center(child: Text('No categories found'));
-          }
-
-          final rootCategories = snapshot.data!.domeggook.items.values.toList();
+      child: category.when(
+        data: (categoryModel) {
+          final rootCategories = categoryModel.domeggook.items.values.toList();
 
           return ListView(
             children: rootCategories
@@ -33,6 +25,8 @@ class CategoryScreen extends ConsumerWidget {
                 .toList(),
           );
         },
+        loading: () => const Center(child: CircularProgressIndicator()),
+        error: (err, _) => Center(child: Text('Error: $err')),
       ),
     );
   }
