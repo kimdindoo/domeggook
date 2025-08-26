@@ -1,3 +1,4 @@
+import 'package:domeggook/common/skeleton/product_skeleton.dart';
 import 'package:domeggook/common/utils/number_utils.dart';
 import 'package:domeggook/common/utils/pagination_helper.dart';
 import 'package:domeggook/config/router/route_names.dart';
@@ -48,6 +49,8 @@ class _CategoryProductScreenState extends ConsumerState<CategoryProductScreen> {
 
   // 실제 데이터 가져오는 함수
   Future<List<Product>> fetchPage(int pageKey, String categoryNumber) async {
+    // await Future.delayed(const Duration(seconds: 3)); // 로딩 테스트용
+
     final newProducts = await ref
         .read(productRepositoryProvider) // Riverpod을 통해 Repository 가져오기
         .getProductByCategory(pageKey, categoryNumber); // 카테고리별 제품 요청
@@ -121,6 +124,17 @@ class _CategoryProductScreenState extends ConsumerState<CategoryProductScreen> {
                           ),
                         ],
                       ),
+                    );
+                  },
+                  // 첫 페이지 로딩 커스텀 위젯
+                  firstPageProgressIndicatorBuilder: (context) {
+                    return ProductSkeleton();
+                  },
+                  // 다음 페이지 로딩 중 커스텀 위젯
+                  newPageProgressIndicatorBuilder: (context) {
+                    return const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20.0),
+                      child: Center(child: CircularProgressIndicator()),
                     );
                   },
                   // 아이템이 하나도 없을 때 표시

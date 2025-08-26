@@ -1,3 +1,4 @@
+import 'package:domeggook/common/skeleton/product_skeleton.dart';
 import 'package:domeggook/common/utils/number_utils.dart';
 import 'package:domeggook/common/utils/pagination_helper.dart';
 import 'package:domeggook/product/model/product_model.dart';
@@ -104,6 +105,17 @@ class _KeywordProductScreenState extends ConsumerState<KeywordProductScreen> {
                           ),
                         ],
                       ),
+                    );
+                  },
+                  // 첫 페이지 로딩 커스텀 위젯
+                  firstPageProgressIndicatorBuilder: (context) {
+                    return ProductSkeleton();
+                  },
+                  // 다음 페이지 로딩 중 커스텀 위젯
+                  newPageProgressIndicatorBuilder: (context) {
+                    return const Padding(
+                      padding: EdgeInsets.symmetric(vertical: 20.0),
+                      child: Center(child: CircularProgressIndicator()),
                     );
                   },
                   // 아이템이 하나도 없을 때 표시
