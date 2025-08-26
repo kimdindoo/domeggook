@@ -36,15 +36,15 @@ GoRouter route(Ref ref) {
                 builder: (context, state) {
                   return ProductScreen();
                 },
-                routes: [
-                  GoRoute(
-                    path: 'productDetail',
-                    name: RouteNames.productDetail,
-                    builder: (context, state) {
-                      return const ProductDetailScreen();
-                    },
-                  ),
-                ],
+                // routes: [
+                //   GoRoute(
+                //     path: 'productDetail',
+                //     name: RouteNames.productDetail,
+                //     builder: (context, state) {
+                //       return const ProductDetailScreen();
+                //     },
+                //   ),
+                // ],
               ),
             ],
           ),
@@ -71,6 +71,17 @@ GoRouter route(Ref ref) {
                         categoryCode: code,
                       );
                     },
+                    routes: [
+                      GoRoute(
+                        path: 'productDetail/:productNo',
+                        name: RouteNames.productDetail,
+                        builder: (context, state) {
+                          final productNo = state.pathParameters['productNo']!;
+
+                          return ProductDetailScreen(productNo: productNo);
+                        },
+                      ),
+                    ],
                   ),
                 ],
               ),
