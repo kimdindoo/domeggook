@@ -5,4 +5,5 @@ class RouteNames {
   static const String productSearch = 'productSearch';
   static const String keywordProduct = 'keywordProduct';
   static const String productDetail = 'productDetail';
+  static const String product1688 = 'product1688';
 }

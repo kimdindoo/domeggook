@@ -3,11 +3,12 @@ import 'package:domeggook/common/view/page_not_found.dart';
 import 'package:domeggook/common/view/scaffold_with_nav_bar.dart';
 import 'package:domeggook/config/router/route_names.dart';
 import 'package:domeggook/product/view/category_product_screen.dart';
-import 'package:domeggook/product/view/category_screen.dart';
+import 'package:domeggook/category/view/category_screen.dart';
 import 'package:domeggook/product/view/keyword_product_screen.dart';
 import 'package:domeggook/product/view/product_detail_screen.dart';
 import 'package:domeggook/product/view/product_screen.dart';
 import 'package:domeggook/product/view/product_search_screen.dart';
+import 'package:domeggook/webview/product_1688_screen.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -23,6 +24,13 @@ GoRouter route(Ref ref) {
     navigatorKey: _rootNavigatorKey,
     initialLocation: '/product',
     routes: [
+      GoRoute(
+        path: '/product1688',
+        name: RouteNames.product1688,
+        builder: (context, state) {
+          return Product1688Screen();
+        },
+      ),
       StatefulShellRoute.indexedStack(
         builder: (context, state, navigationShell) {
           return ScaffoldWithNavBar(navigationShell: navigationShell);
@@ -36,15 +44,6 @@ GoRouter route(Ref ref) {
                 builder: (context, state) {
                   return ProductScreen();
                 },
-                // routes: [
-                //   GoRoute(
-                //     path: 'productDetail',
-                //     name: RouteNames.productDetail,
-                //     builder: (context, state) {
-                //       return const ProductDetailScreen();
-                //     },
-                //   ),
-                // ],
               ),
             ],
           ),
