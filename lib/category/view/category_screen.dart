@@ -11,7 +11,7 @@ class CategoryScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final category = ref.watch(categoryProvider); // ← 여기 수정
+    final category = ref.watch(categoryProvider);
 
     return DefaultLayout(
       title: '카테고리',
