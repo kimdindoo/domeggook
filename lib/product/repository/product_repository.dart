@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:domeggook/config/dio/dio_provider.dart';
-import 'package:domeggook/product/model/category_model.dart';
+import 'package:domeggook/product/model/product_detail_model.dart';
 import 'package:domeggook/product/model/product_model.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -88,14 +88,15 @@ class ProductRepository {
     }
   }
 
-  Future<CategoryModel> getCategory() async {
+  Future<ProductDetailResponse> getProductDetail(String productNo) async {
     try {
       final Response response = await dio.get(
         '',
         queryParameters: {
-          'ver': '1.0',
-          'mode': 'getCategoryList',
+          'ver': '4.5',
+          'mode': 'getItemView',
           'aid': dotenv.env['API_KEY'], // .env에 API_KEY 설정 필요
+          'no': productNo,
           'om': 'json',
         },
       );
@@ -110,9 +111,9 @@ class ProductRepository {
         throw Exception('Response data is null');
       }
 
-      final category = CategoryModel.fromJson(response.data);
+      final productDetail = ProductDetailResponse.fromJson(response.data);
 
-      return category;
+      return productDetail;
     } catch (e) {
       rethrow;
     }

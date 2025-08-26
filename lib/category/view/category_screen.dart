@@ -1,7 +1,7 @@
 import 'package:domeggook/common/layout/defalut_layout.dart';
 import 'package:domeggook/config/router/route_names.dart';
-import 'package:domeggook/product/model/category_model.dart';
-import 'package:domeggook/product/provider/category_provider.dart';
+import 'package:domeggook/category/model/category_model.dart';
+import 'package:domeggook/category/provider/category_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
