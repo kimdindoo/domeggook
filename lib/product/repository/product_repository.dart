@@ -88,7 +88,7 @@ class ProductRepository {
     }
   }
 
-  Future<ProductDetailResponse> getProductDetail(String productNo) async {
+  Future<ProductDetailModel> getProductDetail(String productNo) async {
     try {
       final Response response = await dio.get(
         '',
@@ -111,7 +111,9 @@ class ProductRepository {
         throw Exception('Response data is null');
       }
 
-      final productDetail = ProductDetailResponse.fromJson(response.data);
+      final productDetail = ProductDetailModel.fromJson(response.data);
+
+      print(productDetail);
 
       return productDetail;
     } catch (e) {
