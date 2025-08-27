@@ -1,6 +1,8 @@
+import 'package:domeggook/common/view/error_screen.dart';
 import 'package:domeggook/common/view/page_not_found.dart';
 
 import 'package:domeggook/common/view/scaffold_with_nav_bar.dart';
+import 'package:domeggook/common/view/splash_screen.dart';
 import 'package:domeggook/config/router/route_names.dart';
 import 'package:domeggook/product/view/category_product_screen.dart';
 import 'package:domeggook/category/view/category_screen.dart';
@@ -8,6 +10,7 @@ import 'package:domeggook/product/view/keyword_product_screen.dart';
 import 'package:domeggook/product/view/product_detail_screen.dart';
 import 'package:domeggook/home/view/home_screen.dart';
 import 'package:domeggook/product/view/product_search_screen.dart';
+import 'package:domeggook/product/view/recently_viewd_product.dart';
 import 'package:domeggook/webview/product_1688_screen.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -22,8 +25,18 @@ final GlobalKey<NavigatorState> _rootNavigatorKey = GlobalKey<NavigatorState>();
 GoRouter route(Ref ref) {
   return GoRouter(
     navigatorKey: _rootNavigatorKey,
-    initialLocation: '/',
+    initialLocation: '/splash',
     routes: [
+      GoRoute(
+        path: '/splash',
+        name: RouteNames.splash,
+        builder: (context, state) => const SplashScreen(),
+      ),
+      GoRoute(
+        path: '/error',
+        name: RouteNames.error,
+        builder: (context, state) => const ErrorScreen(),
+      ),
       GoRoute(
         path: '/product1688',
         name: RouteNames.product1688,
@@ -106,6 +119,17 @@ GoRouter route(Ref ref) {
                     },
                   ),
                 ],
+              ),
+            ],
+          ),
+          StatefulShellBranch(
+            routes: [
+              GoRoute(
+                path: '/recentlyViewedProduct',
+                name: RouteNames.recentlyViewedProduct,
+                builder: (context, state) {
+                  return RecentlyViewedProduct();
+                },
               ),
             ],
           ),
