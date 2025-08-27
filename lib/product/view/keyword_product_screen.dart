@@ -75,7 +75,6 @@ class _KeywordProductScreenState extends ConsumerState<KeywordProductScreen> {
                   // 각 아이템 빌드
                   itemBuilder: (context, product, index) {
                     return GestureDetector(
-                      onTap: () {},
                       child: Row(
                         children: [
                           const SizedBox(width: 20),
@@ -87,8 +86,18 @@ class _KeywordProductScreenState extends ConsumerState<KeywordProductScreen> {
                               width: 100,
                               height: 100,
                               fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                // 이미지 로드 실패 시 대체 위젯
+                                return Container(
+                                  width: 100,
+                                  height: 100,
+                                  color: Colors.grey.shade300,
+                                  child: const Icon(Icons.broken_image),
+                                );
+                              },
                             ),
                           ),
+
                           Expanded(
                             child: ListTile(
                               title: Column(

@@ -3,6 +3,8 @@ import 'package:domeggook/common/utils/number_utils.dart';
 import 'package:domeggook/common/utils/pagination_helper.dart';
 import 'package:domeggook/config/router/route_names.dart';
 import 'package:domeggook/product/model/product_model.dart';
+import 'package:domeggook/product/model/recent_product_model.dart';
+import 'package:domeggook/product/provider/recent_product_provider.dart';
 import 'package:domeggook/product/repository/product_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -86,6 +88,20 @@ class _CategoryProductScreenState extends ConsumerState<CategoryProductScreen> {
                     return GestureDetector(
                       onTap: () {
                         print("선택된 상품: ${product.title}, id: ${product.no}");
+
+                        // 최근 본 상품에 추가
+                        ref
+                            .read(recentProductsProvider.notifier)
+                            .addProduct(
+                              RecentProduct(
+                                id: product.id,
+                                title: product.title,
+                                thumbnailUrl: product.thumb,
+                                price: product.price,
+                                minNumber: product.unitQty,
+                              ),
+                            );
+
                         GoRouter.of(context).pushNamed(
                           RouteNames.productDetail,
                           pathParameters: {'productNo': product.no},
@@ -106,6 +122,15 @@ class _CategoryProductScreenState extends ConsumerState<CategoryProductScreen> {
                               width: 100,
                               height: 100,
                               fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                // 이미지 로드 실패 시 대체 위젯
+                                return Container(
+                                  width: 100,
+                                  height: 100,
+                                  color: Colors.grey.shade300,
+                                  child: const Icon(Icons.broken_image),
+                                );
+                              },
                             ),
                           ),
                           Expanded(
