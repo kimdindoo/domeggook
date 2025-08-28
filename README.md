@@ -18,7 +18,7 @@
  ┃ ┃ ┣ 📜category_repository.dart
  ┃ ┃ ┗ 📜category_repository.g.dart
  ┃ ┗ 📂view
- ┃ ┃ ┗ 📜category_screen.dart
+ ┃ ┃ ┗ 📜category_screen.dart 
  ┣ 📂common // 앱 전반에서 재사용되는 공통 기능
  ┃ ┣ 📂const
  ┃ ┃ ┗ 📜color.dart
@@ -77,11 +77,11 @@
  ┃ ┃ ┣ 📜product_repository.dart
  ┃ ┃ ┗ 📜product_repository.g.dart
  ┃ ┗ 📂view
- ┃ ┃ ┣ 📜category_product_screen.dart
- ┃ ┃ ┣ 📜keyword_product_screen.dart
- ┃ ┃ ┣ 📜product_detail_screen.dart
- ┃ ┃ ┣ 📜product_search_screen.dart
- ┃ ┃ ┗ 📜recent_viewd_product_screen.dart
+ ┃ ┃ ┣ 📜category_product_screen.dart // 카테고리 화면
+ ┃ ┃ ┣ 📜keyword_product_screen.dart // 상품 검색 결과 상품리스트 화면
+ ┃ ┃ ┣ 📜product_detail_screen.dart // 상품 상세 화면
+ ┃ ┃ ┣ 📜product_search_screen.dart // 상품 검색 화면
+ ┃ ┃ ┗ 📜recent_viewd_product_screen.dart // 최근 본 상품 화면
  ┣ 📂webview
  ┃ ┗ 📜product_1688_screen.dart
  ┗ 📜main.dart
