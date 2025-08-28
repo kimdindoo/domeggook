@@ -10,7 +10,7 @@ import 'package:domeggook/product/view/keyword_product_screen.dart';
 import 'package:domeggook/product/view/product_detail_screen.dart';
 import 'package:domeggook/home/view/home_screen.dart';
 import 'package:domeggook/product/view/product_search_screen.dart';
-import 'package:domeggook/product/view/recently_viewd_product.dart';
+import 'package:domeggook/product/view/recent_viewd_product_screen.dart';
 import 'package:domeggook/webview/product_1688_screen.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -125,10 +125,10 @@ GoRouter route(Ref ref) {
           StatefulShellBranch(
             routes: [
               GoRoute(
-                path: '/recentlyViewedProduct',
-                name: RouteNames.recentlyViewedProduct,
+                path: '/recentViewedProduct',
+                name: RouteNames.recentViewedProduct,
                 builder: (context, state) {
-                  return RecentlyViewedProduct();
+                  return RecentViewedProductScreen();
                 },
               ),
             ],
