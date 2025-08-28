@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
+// 상품 목록 로딩 skeleton
 class ProductSkeleton extends StatelessWidget {
   const ProductSkeleton({super.key});
 
