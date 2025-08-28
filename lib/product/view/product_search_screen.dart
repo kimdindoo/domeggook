@@ -66,7 +66,7 @@ class _ProductSearchScreenState extends ConsumerState<ProductSearchScreen> {
               ),
             ),
             const SizedBox(height: 16),
-            RecentSearchWidget(),
+            RecentSearch(),
             const SizedBox(height: 16),
             RecentViewdProduct(),
           ],

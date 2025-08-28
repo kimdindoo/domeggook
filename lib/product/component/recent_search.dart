@@ -5,8 +5,8 @@ import 'package:go_router/go_router.dart';
 
 import '../../config/router/route_names.dart';
 
-class RecentSearchWidget extends ConsumerWidget {
-  const RecentSearchWidget({super.key});
+class RecentSearch extends ConsumerWidget {
+  const RecentSearch({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

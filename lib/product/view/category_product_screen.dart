@@ -18,7 +18,7 @@ class CategoryProductScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return DefaultLayout(
       title: categoryName,
-      child: ProductListWidget(
+      child: ProductList(
         fetchPage: (pageKey) async {
           // 카테고리별 제품 요청
           return ref

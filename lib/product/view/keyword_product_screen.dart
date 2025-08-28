@@ -13,7 +13,7 @@ class KeywordProductScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return DefaultLayout(
       title: '"$keyword" 검색결과',
-      child: ProductListWidget(
+      child: ProductList(
         fetchPage: (pageKey) async {
           // 키워드별 제품 요청
           return ref

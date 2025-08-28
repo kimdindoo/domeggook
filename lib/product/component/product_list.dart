@@ -14,16 +14,16 @@ import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 // fetchPage 콜백 타입 정의
 typedef ProductFetcher = Future<List<Product>> Function(int pageKey);
 
-class ProductListWidget extends ConsumerStatefulWidget {
-  const ProductListWidget({super.key, required this.fetchPage});
+class ProductList extends ConsumerStatefulWidget {
+  const ProductList({super.key, required this.fetchPage});
 
   final ProductFetcher fetchPage; // 상품 데이터를 가져오는 함수
 
   @override
-  ConsumerState<ProductListWidget> createState() => _ProductListWidgetState();
+  ConsumerState<ProductList> createState() => _ProductListState();
 }
 
-class _ProductListWidgetState extends ConsumerState<ProductListWidget> {
+class _ProductListState extends ConsumerState<ProductList> {
   // pageSize는 product_repository에서 정의된 limit 사용
   final _paginationHelper = PaginationHelper(pageSize: limit);
 
