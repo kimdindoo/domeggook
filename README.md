@@ -2,6 +2,40 @@
 
 <img width="6188" height="13235" alt="Group 2" src="https://github.com/user-attachments/assets/e3f5a5de-aabd-4a52-80af-5e4e9587a7e1" />
 
+##  아키텍처 스타일
+
+이 프로젝트는 **Flutter + Riverpod 기반 MVVM 변형 패턴**으로 설계되었습니다.  
+각 계층은 역할별로 분리되어 유지보수와 확장성을 높였습니다.
+
+### 계층별 구조
+
+1. **Model (데이터 계층)**
+   - `model/` 폴더에 위치
+   - 데이터 구조 정의, JSON 직렬화/역직렬화 담당
+   - 사용 예: `category_model.dart`, `product_model.dart`
+   - 라이브러리: Freezed, JSON Serializable
+
+2. **Repository (데이터 소스)**
+   - `repository/` 폴더에 위치
+   - API 호출(Dio) 및 로컬 데이터(Hive) 접근 담당
+   - ViewModel에 데이터를 제공
+
+3. **ViewModel / Provider (비즈니스 로직 / 상태 관리)**
+   - `provider/` 폴더에 위치
+   - 상태 관리, API 호출, 데이터 처리 담당
+   - View와 Model을 연결하는 역할
+   - 라이브러리: Riverpod, Riverpod Generator
+
+4. **View (UI 계층)**
+   - `view/` 폴더에 위치
+   - 화면 구성과 사용자 인터페이스 담당
+   - 예: `category_screen.dart`, `product_detail_screen.dart`
+
+---
+
+### 데이터 흐름 요약
+
+
 
 ## 프로젝트 구조 
 ```
@@ -77,7 +111,7 @@
  ┃ ┃ ┣ 📜product_repository.dart
  ┃ ┃ ┗ 📜product_repository.g.dart
  ┃ ┗ 📂view
- ┃ ┃ ┣ 📜category_product_screen.dart // 카테고리 화면
+ ┃ ┃ ┣ 📜category_product_screen.dart // 카테고리 선택 후 상품리스트 화면
  ┃ ┃ ┣ 📜keyword_product_screen.dart // 상품 검색 결과 상품리스트 화면
  ┃ ┃ ┣ 📜product_detail_screen.dart // 상품 상세 화면
  ┃ ┃ ┣ 📜product_search_screen.dart // 상품 검색 화면
@@ -119,5 +153,10 @@
 | `riverpod_generator` | ^2.4.3 | Riverpod 코드 생성 도구 |
 | `riverpod_lint` | ^2.3.13 | Riverpod Lint 규칙 |
 | `hive_generator` | ^2.0.1 | Hive 모델 코드 생성 |
+
+## 개발 환경
+
+- Flutter: 3.32.8 
+- Dart: 3.8.1  
 
 
