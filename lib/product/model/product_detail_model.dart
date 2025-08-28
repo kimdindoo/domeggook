@@ -134,7 +134,11 @@ class Deli with _$Deli {
 
 @freezed
 class Dome with _$Dome {
-  factory Dome({String? type, String? tbl}) = _Dome;
+  factory Dome({
+    String? type,
+    @JsonKey(fromJson: _toString) String? fee,
+    String? tbl,
+  }) = _Dome;
   factory Dome.fromJson(Map<String, dynamic> json) => _$DomeFromJson(json);
 }
 

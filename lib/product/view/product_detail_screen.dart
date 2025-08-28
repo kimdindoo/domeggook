@@ -35,97 +35,95 @@ class ProductDetailScreen extends ConsumerWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
-                // 상품명
-                Text(
-                  data.domeggook.basis.title!,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      // 상품명
+                      Text(
+                        data.domeggook.basis.title!,
+                        style: TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
 
-                // 가격
-                Text(
-                  formatPriceRange(data.domeggook.price.dome!),
-                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                ),
+                      // 가격
+                      Text(
+                        formatPriceRange(data.domeggook.price.dome!),
+                        style: TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
 
-                // 최소 구매 수량
-                Row(
-                  children: [
-                    Text(
-                      '최소구매수량 ${data.domeggook.qty.domeMoq}개',
-                      style: TextStyle(fontSize: 14),
-                    ),
-                    if (data.domeggook.qty.domeLoq != null)
-                      Text('최대구매수량 ${data.domeggook.qty.domeLoq}개)'),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                // 배송 정보
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text('배송정보', style: TextStyle(fontSize: 16)),
-                    const SizedBox(width: 8),
-                    Expanded(
-                      //  텍스트가 길어질 수 있으므로 Expanded로 감싸줌
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      // 최소 구매 수량
+                      Row(
                         children: [
                           Text(
-                            parseDeliveryFee(
-                              type: data.domeggook.deli.dome?.type ?? '',
-                              tbl: data.domeggook.deli.dome?.tbl ?? '',
-                              pay: data.domeggook.deli.pay!,
-                            ),
+                            '최소구매수량 ${data.domeggook.qty.domeMoq}개',
+                            style: TextStyle(fontSize: 14),
                           ),
-                          Text(
-                            '${data.domeggook.deli.wating} (평균 출고일 약 ${data.domeggook.deli.sendAvg}일)',
-                          ),
-                          if (data.domeggook.deli.merge?.enable != null &&
-                              getMergeText(
-                                data.domeggook.deli.merge!.enable,
-                              ).isNotEmpty)
-                            Text(
-                              getMergeText(data.domeggook.deli.merge!.enable),
-                              style: const TextStyle(color: Colors.grey),
-                            ),
+                          const SizedBox(width: 8),
+                          if (data.domeggook.qty.domeLoq != null)
+                            Text('최대구매수량 ${data.domeggook.qty.domeLoq}개)'),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                // 재고 수량
-                Row(
-                  children: [
-                    const Text('재고수량', style: TextStyle(fontSize: 16)),
-                    const SizedBox(width: 8),
-                    Text(
-                      '${NumberUtils.formatPrice(int.tryParse(data.domeggook.qty.inventory ?? '0') ?? 0)}개',
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                // 원산지
-                Row(
-                  children: [
-                    const Text('원산지', style: TextStyle(fontSize: 16)),
-                    const SizedBox(width: 8),
-                    Text(
-                      (data.domeggook.detail.country ?? '').replaceAll(
-                        '_',
-                        ' / ',
+                      const SizedBox(height: 8),
+                      // 배송 정보
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text('배송정보', style: TextStyle(fontSize: 16)),
+                          const SizedBox(width: 8),
+                          Expanded(
+                            //  텍스트가 길어질 수 있으므로 Expanded로 감싸줌
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  parseDeliveryFee(
+                                    type: data.domeggook.deli.dome?.type ?? '',
+                                    tbl: data.domeggook.deli.dome?.tbl ?? '',
+                                    pay: data.domeggook.deli.pay!,
+                                    fee: data.domeggook.deli.dome?.fee,
+                                  ),
+                                ),
+                                Text(
+                                  '${data.domeggook.deli.wating} (평균 출고일 약 ${data.domeggook.deli.sendAvg}일)',
+                                ),
+                                if (data.domeggook.deli.merge?.enable != null &&
+                                    getMergeText(
+                                      data.domeggook.deli.merge!.enable,
+                                    ).isNotEmpty)
+                                  Text(
+                                    getMergeText(
+                                      data.domeggook.deli.merge!.enable,
+                                    ),
+                                    style: const TextStyle(color: Colors.grey),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                // 공급사 정보
-                Row(
-                  children: [
-                    const Text('공급사', style: TextStyle(fontSize: 16)),
-                    const SizedBox(width: 8),
-                    Text('${data.domeggook.seller.nick}'),
-                  ],
+                      const SizedBox(height: 8),
+
+                      buildInfoRow(
+                        '재고수량',
+                        '${NumberUtils.formatPrice(int.tryParse(data.domeggook.qty.inventory ?? '0') ?? 0)}개',
+                      ),
+                      buildInfoRow(
+                        '원산지',
+                        (data.domeggook.detail.country ?? '').replaceAll(
+                          '_',
+                          ' / ',
+                        ),
+                      ),
+                      buildInfoRow('공급사', data.domeggook.seller.nick!),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -136,6 +134,19 @@ class ProductDetailScreen extends ConsumerWidget {
       ),
     );
   }
+}
+
+Widget buildInfoRow(String label, String value) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 8),
+    child: Row(
+      children: [
+        Text(label, style: const TextStyle(fontSize: 16)),
+        const SizedBox(width: 8),
+        Expanded(child: Text(value)),
+      ],
+    ),
+  );
 }
 
 // 가격 범위 포맷팅
@@ -169,12 +180,14 @@ String parseDeliveryFee({
   required String type,
   required String tbl,
   required String pay,
+  String? fee,
 }) {
   if (pay == "무료배송") return "무료배송";
   if (type == "금액비노출") return "배송비 정보 없음";
 
   if (type == "고정배송비") {
-    final price = int.tryParse(tbl) ?? 0;
+    if (fee == null) return "배송비 정보 없음";
+    final price = int.tryParse(fee) ?? 0;
     return "${NumberUtils.formatPrice(price)}원 (고정)";
   }
 
