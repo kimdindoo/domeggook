@@ -6,7 +6,7 @@
 ## 프로젝트 구조 
 ```
 📦lib
- ┣ 📂category
+ ┣ 📂category // 카테고리 관련 기능
  ┃ ┣ 📂model
  ┃ ┃ ┣ 📜category_model.dart
  ┃ ┃ ┣ 📜category_model.freezed.dart
@@ -19,15 +19,15 @@
  ┃ ┃ ┗ 📜category_repository.g.dart
  ┃ ┗ 📂view
  ┃ ┃ ┗ 📜category_screen.dart
- ┣ 📂common
+ ┣ 📂common // 앱 전반에서 재사용되는 공통 기능
  ┃ ┣ 📂const
  ┃ ┃ ┗ 📜color.dart
  ┃ ┣ 📂layout
  ┃ ┃ ┗ 📜default_layout.dart
- ┃ ┣ 📂skeleton
+ ┃ ┣ 📂skeleton // 로딩 UI
  ┃ ┃ ┣ 📜product_detail_skeleton.dart
  ┃ ┃ ┗ 📜product_skeleton.dart
- ┃ ┣ 📂utils
+ ┃ ┣ 📂utils 
  ┃ ┃ ┣ 📜number_utils.dart
  ┃ ┃ ┗ 📜pagination_helper.dart
  ┃ ┗ 📂view
@@ -39,7 +39,7 @@
  ┃ ┣ 📂dio
  ┃ ┃ ┣ 📜dio_provider.dart
  ┃ ┃ ┗ 📜dio_provider.g.dart
- ┃ ┗ 📂router
+ ┃ ┗ 📂router // 화면 라우팅 설정
  ┃ ┃ ┣ 📜route_names.dart
  ┃ ┃ ┣ 📜router_provider.dart
  ┃ ┃ ┗ 📜router_provider.g.dart
@@ -50,7 +50,7 @@
  ┃ ┃ ┣ 📜home_event_screen.dart
  ┃ ┃ ┣ 📜home_main_screen.dart
  ┃ ┃ ┗ 📜home_screen.dart
- ┣ 📂observer
+ ┣ 📂observer // riverpod 상태관리 로깅
  ┃ ┗ 📜logger.dart
  ┣ 📂product
  ┃ ┣ 📂component
