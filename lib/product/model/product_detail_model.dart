@@ -116,15 +116,15 @@ class Deli with _$Deli {
   factory Deli({
     String? method,
     String? pay,
-    required Dome dome,
-    required Dome supply,
+    Dome? dome,
+    Dome? supply,
     String? wating,
     String? periodDeli,
     String? sendAvg,
     String? fastDeli,
-    required Merge merge,
-    @JsonKey(fromJson: _toString) String? shippingArea, // ! 확인
-    required FeeExtra feeExtra,
+    Merge? merge,
+    @JsonKey(fromJson: _toString) String? shippingArea,
+    FeeExtra? feeExtra,
     String? fromOversea,
     String? reqCcno,
   }) = _Deli;
@@ -197,6 +197,7 @@ class Qty with _$Qty {
   factory Qty({
     @JsonKey(fromJson: _toString) String? inventory,
     @JsonKey(fromJson: _toString) String? domeMoq,
+    @JsonKey(fromJson: _toString) String? domeLoq,
     @JsonKey(fromJson: _toString) String? domeUnit,
   }) = _Qty;
 
@@ -330,8 +331,8 @@ class SafetyCert with _$SafetyCert {
 class ReturnClass with _$ReturnClass {
   factory ReturnClass({
     required Addr addr,
-    int? deliAmt,
-    String? deliAmtDouble,
+    @JsonKey(fromJson: _toString) String? deliAmt,
+    @JsonKey(fromJson: _toString) String? deliAmtDouble,
   }) = _ReturnClass;
 
   factory ReturnClass.fromJson(Map<String, dynamic> json) =>
