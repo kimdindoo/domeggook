@@ -7,7 +7,7 @@ int _stringOrIntToInt(dynamic value) =>
     value is String ? int.parse(value) : value as int;
 
 @freezed
-abstract class ProductModel with _$ProductModel {
+class ProductModel with _$ProductModel {
   const factory ProductModel({required Domeggook domeggook}) = _ProductModel;
 
   factory ProductModel.fromJson(Map<String, dynamic> json) =>
@@ -15,7 +15,7 @@ abstract class ProductModel with _$ProductModel {
 }
 
 @freezed
-abstract class Domeggook with _$Domeggook {
+class Domeggook with _$Domeggook {
   const factory Domeggook({required Header header, required ItemList list}) =
       _Domeggook;
 
@@ -24,7 +24,7 @@ abstract class Domeggook with _$Domeggook {
 }
 
 @freezed
-abstract class Header with _$Header {
+class Header with _$Header {
   const factory Header({
     required int numberOfItems,
     required int firstItem,
@@ -40,7 +40,7 @@ abstract class Header with _$Header {
 }
 
 @freezed
-abstract class ItemList with _$ItemList {
+class ItemList with _$ItemList {
   const factory ItemList({required List<Product> item}) = _ItemList;
 
   factory ItemList.fromJson(Map<String, dynamic> json) =>
@@ -48,7 +48,7 @@ abstract class ItemList with _$ItemList {
 }
 
 @freezed
-abstract class Product with _$Product {
+class Product with _$Product {
   const factory Product({
     required String no,
     required String title,
@@ -70,7 +70,7 @@ abstract class Product with _$Product {
 }
 
 @freezed
-abstract class Delivery with _$Delivery {
+class Delivery with _$Delivery {
   const factory Delivery({
     required String who,
     required String fee,
@@ -83,7 +83,7 @@ abstract class Delivery with _$Delivery {
 }
 
 @freezed
-abstract class Market with _$Market {
+class Market with _$Market {
   const factory Market({required String domeggook, required String supply}) =
       _Market;
 

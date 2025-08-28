@@ -4,7 +4,7 @@ part 'category_model.freezed.dart';
 part 'category_model.g.dart';
 
 @freezed
-abstract class CategoryModel with _$CategoryModel {
+class CategoryModel with _$CategoryModel {
   const factory CategoryModel({required Domeggook domeggook}) = _CategoryModel;
 
   factory CategoryModel.fromJson(Map<String, dynamic> json) =>
@@ -12,7 +12,7 @@ abstract class CategoryModel with _$CategoryModel {
 }
 
 @freezed
-abstract class Domeggook with _$Domeggook {
+class Domeggook with _$Domeggook {
   const factory Domeggook({required Map<String, CategoryNode> items}) =
       _Domeggook;
 
@@ -21,7 +21,7 @@ abstract class Domeggook with _$Domeggook {
 }
 
 @freezed
-abstract class CategoryNode with _$CategoryNode {
+class CategoryNode with _$CategoryNode {
   const factory CategoryNode({
     required String code,
     required String name,
