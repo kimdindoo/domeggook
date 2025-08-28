@@ -1,6 +1,5 @@
 import 'package:domeggook/common/view/error_screen.dart';
 import 'package:domeggook/common/view/page_not_found.dart';
-
 import 'package:domeggook/common/view/scaffold_with_nav_bar.dart';
 import 'package:domeggook/common/view/splash_screen.dart';
 import 'package:domeggook/config/router/route_names.dart';
