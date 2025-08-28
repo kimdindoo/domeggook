@@ -18,7 +18,7 @@ class RecentProducts extends _$RecentProducts {
   /// 상품 추가
   void addProduct(RecentProduct product) {
     // 중복 제거
-    final duplicates = _box.values.where((p) => p.id == product.id).toList();
+    final duplicates = _box.values.where((p) => p.no == product.no).toList();
     for (var p in duplicates) {
       p.delete();
     }
@@ -28,8 +28,8 @@ class RecentProducts extends _$RecentProducts {
   }
 
   /// 특정 상품 삭제
-  void removeProduct(String id) {
-    final target = _box.values.where((p) => p.id == id).toList();
+  void removeProduct(String no) {
+    final target = _box.values.where((p) => p.no == no).toList();
     for (var p in target) {
       p.delete();
     }

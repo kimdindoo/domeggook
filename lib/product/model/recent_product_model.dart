@@ -5,7 +5,7 @@ part 'recent_product_model.g.dart';
 @HiveType(typeId: 0) // typeId는 프로젝트 내에서 유일해야 함
 class RecentProduct extends HiveObject {
   @HiveField(0)
-  final String id;
+  final String no;
 
   @HiveField(1)
   final String title;
@@ -20,7 +20,7 @@ class RecentProduct extends HiveObject {
   final String minNumber;
 
   RecentProduct({
-    required this.id,
+    required this.no,
     required this.title,
     required this.thumbnailUrl,
     required this.price,
