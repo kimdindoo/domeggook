@@ -13,6 +13,8 @@ class ScaffoldWithNavBar extends StatelessWidget {
     return Scaffold(
       body: navigationShell,
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Colors.white,
         selectedItemColor: PRIMARY_COLOR,
         unselectedItemColor: BODY_TEXT_COLOR,
         selectedFontSize: 10,
@@ -23,10 +25,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
           BottomNavigationBarItem(icon: Icon(Icons.home_outlined), label: '홈'),
           BottomNavigationBarItem(icon: Icon(Icons.menu), label: '카테고리'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: '상품 검색'),
-          // BottomNavigationBarItem(
-          //   icon: Icon(Icons.person_outline),
-          //   label: '마이페이지',
-          // ),
+
           BottomNavigationBarItem(
             icon: Icon(Icons.access_time_outlined),
             label: '최근 본 상품',
