@@ -1,4 +1,4 @@
-import 'package:domeggook/common/layout/defalut_layout.dart';
+import 'package:domeggook/common/layout/default_layout.dart';
 import 'package:domeggook/config/router/route_names.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

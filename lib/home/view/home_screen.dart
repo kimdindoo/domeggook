@@ -1,4 +1,4 @@
-import 'package:domeggook/common/layout/defalut_layout.dart';
+import 'package:domeggook/common/layout/default_layout.dart';
 import 'package:domeggook/config/router/route_names.dart';
 import 'package:domeggook/home/view/home_event_screen.dart';
 import 'package:domeggook/home/view/home_main_screen.dart';

@@ -1,4 +1,4 @@
-import 'package:domeggook/common/layout/defalut_layout.dart';
+import 'package:domeggook/common/layout/default_layout.dart';
 import 'package:domeggook/common/utils/number_utils.dart';
 import 'package:domeggook/product/provider/recent_product_provider.dart';
 import 'package:flutter/material.dart';

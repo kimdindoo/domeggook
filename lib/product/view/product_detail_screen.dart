@@ -1,4 +1,4 @@
-import 'package:domeggook/common/layout/defalut_layout.dart';
+import 'package:domeggook/common/layout/default_layout.dart';
 import 'package:domeggook/common/skeleton/product_detail_skeleton.dart';
 import 'package:domeggook/common/utils/number_utils.dart';
 import 'package:domeggook/common/view/error_screen.dart';

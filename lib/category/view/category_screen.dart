@@ -1,4 +1,4 @@
-import 'package:domeggook/common/layout/defalut_layout.dart';
+import 'package:domeggook/common/layout/default_layout.dart';
 import 'package:domeggook/common/view/error_screen.dart';
 import 'package:domeggook/config/router/route_names.dart';
 import 'package:domeggook/category/model/category_model.dart';
@@ -42,14 +42,18 @@ class TopLevelExpansionTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final children = category.child?.values.toList() ?? [];
 
+    // 자식 노드가 없는 경우
     if (children.isEmpty) {
       return ListTile(
         title: Text(
           category.name,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
         ),
         onTap: () {
-          debugPrint("선택된 카테고리: ${category.name}, code: ${category.code}");
+          GoRouter.of(context).pushNamed(
+            RouteNames.categoryProduct,
+            queryParameters: {'name': category.name, 'code': category.code},
+          );
         },
       );
     }
@@ -79,8 +83,6 @@ class TopLevelExpansionTile extends StatelessWidget {
                 ),
               ),
               onTap: () {
-                debugPrint("선택된 카테고리: ${node.name}, code: ${node.code}");
-
                 GoRouter.of(context).pushNamed(
                   RouteNames.categoryProduct,
                   queryParameters: {'name': node.name, 'code': node.code},
