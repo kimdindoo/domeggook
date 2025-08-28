@@ -72,8 +72,6 @@ class _ProductListState extends ConsumerState<ProductList> {
                 itemBuilder: (context, product, index) {
                   return GestureDetector(
                     onTap: () {
-                      print("선택된 상품: ${product.title}, id: ${product.no}");
-
                       // 최근 본 상품에 추가
                       ref
                           .read(recentProductsProvider.notifier)
