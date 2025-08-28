@@ -113,8 +113,6 @@ class ProductRepository {
 
       final productDetail = ProductDetailModel.fromJson(response.data);
 
-      print(productDetail);
-
       return productDetail;
     } catch (e) {
       rethrow;
