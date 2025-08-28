@@ -1,4 +1,5 @@
 import 'package:domeggook/common/layout/defalut_layout.dart';
+import 'package:domeggook/common/view/error_screen.dart';
 import 'package:domeggook/config/router/route_names.dart';
 import 'package:domeggook/category/model/category_model.dart';
 import 'package:domeggook/category/provider/category_provider.dart';
@@ -26,7 +27,7 @@ class CategoryScreen extends ConsumerWidget {
           );
         },
         loading: () => const Center(child: CircularProgressIndicator()),
-        error: (err, _) => Center(child: Text('Error: $err')),
+        error: (err, _) => ErrorScreen(),
       ),
     );
   }
@@ -61,7 +62,7 @@ class TopLevelExpansionTile extends StatelessWidget {
         key: PageStorageKey<String>(category.code),
         title: Text(
           category.name,
-          style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 16),
+          style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 14),
         ),
         children: children.map((node) {
           return Container(
